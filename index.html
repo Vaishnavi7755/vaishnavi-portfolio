@@ -1401,17 +1401,48 @@ footer a { color: var(--teal); text-decoration: none; }
     el.dataset.delay = (i % 4) * 80;
     revealObserver.observe(el);
   });
-
   // Counter animation
   function animateCounter(el) {
+    if (el.dataset.animated) return;
+    el.dataset.animated = 'true';
     const target = parseInt(el.dataset.count);
     const prefix = el.dataset.prefix || '';
     const suffix = el.dataset.suffix || '';
     const duration = 1800;
-    const step = target / (duration / 16);
+    const steps = 60;
+    const stepVal = target / steps;
     let current = 0;
+    let count = 0;
     const timer = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        current = target;
-        clearInterval(t
+      count++;
+      current = Math.min(stepVal * count, target);
+      el.textContent = prefix + Math.round(current) + suffix;
+      if (count >= steps) clearInterval(timer);
+    }, duration / steps);
+  }
+
+  // Trigger counters when stats bar is visible
+  const statsBar = document.querySelector('.stats-bar');
+  if (statsBar) {
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('[data-count]').forEach(animateCounter);
+        }
+      });
+    }, { threshold: 0.3 });
+    statsObserver.observe(statsBar);
+  }
+
+  // Also run on page load in case stats bar is already visible
+  window.addEventListener('load', () => {
+    const bar = document.querySelector('.stats-bar');
+    if (!bar) return;
+    const rect = bar.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      document.querySelectorAll('[data-count]').forEach(animateCounter);
+    }
+  });
+</script>
+</body>
+</html>
