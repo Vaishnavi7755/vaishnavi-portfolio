@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaishnavi Sharma — AI Product Owner</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --bg2: #f0fdfa;
+  --bg3: #f8fafc;
+  --teal: #0d9488;
+  --teal-dark: #0f766e;
+  --teal-light: #ccfbf1;
+  --teal-mid: #5eead4;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --white: #ffffff;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg3); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 2px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 60px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 24px rgba(13,148,136,0.08); }
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--teal);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 2px;
+  background: var(--teal);
+  transition: width 0.25s;
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--teal) !important;
+  color: white !important;
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  transition: background 0.2s, transform 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal-dark) !important; transform: translateY(-1px); }
+.nav-cta::after { display: none !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+  padding: 120px 60px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-blob {
+  position: absolute;
+  top: -180px; right: -180px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, #ccfbf1 0%, #f0fdfa 50%, transparent 70%);
+  border-radius: 50%;
+  animation: blobFloat 8s ease-in-out infinite;
+  pointer-events: none;
+}
+.hero-blob2 {
+  position: absolute;
+  bottom: -120px; left: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #f0fdfa 0%, transparent 70%);
+  border-radius: 50%;
+  animation: blobFloat 10s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(20px,-20px) scale(1.05); }
+  66% { transform: translate(-15px,15px) scale(0.97); }
+}
+
+.hero-left { position: relative; z-index: 1; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.1s ease forwards;
+}
+.hero-badge span { width: 6px; height: 6px; background: var(--teal); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(44px, 5vw, 68px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.2s ease forwards;
+}
+.hero h1 .accent { color: var(--teal); position: relative; }
+.hero h1 .accent::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 0; right: 0;
+  height: 4px;
+  background: var(--teal-light);
+  z-index: -1;
+  border-radius: 2px;
+}
+
+.hero-desc {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.3s ease forwards;
+}
+.hero-desc strong { color: var(--text); font-weight: 600; }
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.4s ease forwards;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(13,148,136,0.25);
+}
+.btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,148,136,0.35); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent;
+  color: var(--text);
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid var(--border);
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
+/* hero right: illustration */
+.hero-right {
+  position: relative; z-index: 1;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.5s ease forwards;
+}
+.hero-illustration {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: block;
+  filter: drop-shadow(0 20px 60px rgba(13,148,136,0.15));
+  animation: floatIllus 6s ease-in-out infinite;
+}
+@keyframes floatIllus {
+  0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)}
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--teal);
+  padding: 48px 60px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  position: relative;
+  overflow: hidden;
+}
+.stats-bar::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+.stat-item {
+  text-align: center;
+  padding: 20px;
+  border-right: 1px solid rgba(255,255,255,0.15);
+  position: relative;
+}
+.stat-item:last-child { border-right: none; }
+.stat-num-wrap {
+  font-family: 'Syne', sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label-wrap {
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── SECTIONS ── */
+section { padding: 100px 60px; }
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 16px;
+}
+.section-tag::before { content:''; width:24px; height:2px; background:var(--teal); border-radius:1px; }
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(30px, 3.5vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 56px;
+}
+.section-title em { color: var(--teal); font-style: normal; }
+
+/* ── ABOUT ── */
+#about {
+  background: var(--bg2);
+  position: relative;
+  overflow: hidden;
+}
+#about::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(94,234,212,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-text p {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+.about-text p strong { color: var(--text); font-weight: 600; }
+.about-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.tag {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* about illustration */
+.about-illus-wrap { position: relative; }
+.about-illus-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 8px 40px rgba(13,148,136,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.about-illus-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--teal-mid));
+}
+
+/* ── SKILLS ── */
+#skills { background: var(--bg); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+.skill-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--teal-light), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 16px;
+}
+.skill-card:hover {
+  border-color: var(--teal);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(13,148,136,0.12);
+}
+.skill-card:hover::before { opacity: 1; }
+.skill-icon {
+  width: 44px; height: 44px;
+  background: var(--teal-light);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+  font-size: 20px;
+  position: relative;
+}
+.skill-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  position: relative;
+}
+.skill-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  position: relative;
+}
+
+/* ── CASE STUDIES ── */
+#work { background: var(--bg3); }
+.case-grid { display: flex; flex-direction: column; gap: 24px; }
+.case-card {
+  background: white;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+.case-card:hover { box-shadow: 0 8px 40px rgba(13,148,136,0.1); border-color: rgba(13,148,136,0.3); }
+.case-card.open { border-color: var(--teal); box-shadow: 0 8px 40px rgba(13,148,136,0.12); }
+
+.case-header {
+  padding: 36px 40px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 28px;
+  align-items: center;
+  user-select: none;
+}
+.case-num-badge {
+  width: 48px; height: 48px;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+.case-card.open .case-num-badge { background: var(--teal); color: white; }
+.case-header-text { flex: 1; }
+.case-domain {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 6px;
+}
+.case-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.case-tagline { font-size: 14px; color: var(--muted); }
+.case-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.case-pill {
+  background: var(--bg3);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+}
+.case-toggle-btn {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--bg3);
+  border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--teal);
+  font-size: 22px;
+  transition: background 0.2s, transform 0.3s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.case-card.open .case-toggle-btn { transform: rotate(45deg); background: var(--teal-light); }
+
+.case-body {
+  display: none;
+  padding: 0 40px 40px;
+  border-top: 1.5px solid var(--border);
+}
+.case-card.open .case-body { display: block; }
+
+/* snapshot row */
+.case-snapshot {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 32px 0;
+}
+.snap-cell {
+  background: var(--bg2);
+  border-radius: 14px;
+  padding: 22px 20px;
+  border: 1px solid rgba(13,148,136,0.1);
+}
+.snap-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+.snap-cell p { font-size: 13px; color: var(--text); line-height: 1.55; }
+
+/* case inner sections */
+.cs { margin-top: 32px; }
+.cs-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cs-title::after { content:''; flex:1; height:1px; background:var(--border); }
+.cs p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 12px; }
+.cs p strong { color: var(--text); font-weight: 600; }
+
+.hypothesis {
+  background: linear-gradient(135deg, var(--teal-light), #f0fdfa);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 12px 12px 0;
+  padding: 18px 22px;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.7;
+  margin: 16px 0;
+}
+
+.blist { list-style: none; padding: 0; }
+.blist li {
+  font-size: 15px;
+  color: var(--muted);
+  padding: 7px 0 7px 22px;
+  position: relative;
+  line-height: 1.7;
+}
+.blist li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 15px;
+  width: 8px; height: 8px;
+  background: var(--teal-light);
+  border: 2px solid var(--teal);
+  border-radius: 50%;
+}
+.blist li strong { color: var(--text); font-weight: 600; }
+
+/* decisions */
+.decisions { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.dec-card {
+  background: var(--bg3);
+  border-radius: 12px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s;
+}
+.dec-card:hover { border-color: rgba(13,148,136,0.3); }
+.dec-choice { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.dec-why { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* flow */
+.flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 16px 0; }
+.flow-step {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.flow-arr { color: var(--teal); font-size: 16px; padding: 0 8px; }
+
+/* impact */
+.impact-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.imp-cell {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 16px;
+  text-align: center;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.imp-cell:hover { border-color: var(--teal); transform: translateY(-2px); }
+.imp-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.imp-desc { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.4; }
+
+/* before/after */
+.bfaf {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+.bfaf-col { border-radius: 14px; overflow: hidden; }
+.bfaf-head {
+  padding: 12px 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.bfaf-head.b { background: var(--bg3); color: var(--muted); }
+.bfaf-head.a { background: var(--teal); color: white; }
+.bfaf-row {
+  padding: 10px 18px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+  background: white;
+}
+.bfaf-row.a { color: var(--text); font-weight: 500; background: #f0fdfa; }
+.bfaf-row.b { color: var(--muted); }
+
+/* challenges */
+.challenges { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+.chal-item {
+  background: white;
+  border-radius: 12px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--teal);
+}
+.chal-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.chal-body { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+/* ── CONTACT ── */
+#contact { background: var(--bg2); position: relative; overflow: hidden; }
+#contact::after {
+  content:'';
+  position: absolute; bottom: -200px; right: -200px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(94,234,212,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contact-bio { font-size: 16px; color: var(--muted); line-height: 1.85; margin-bottom: 32px; }
+.contact-bio strong { color: var(--text); font-weight: 600; }
+.contact-links { display: flex; flex-direction: column; gap: 12px; }
+.contact-link {
+  display: flex; align-items: center; gap: 16px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.contact-link:hover { border-color: var(--teal); box-shadow: 0 4px 20px rgba(13,148,136,0.1); transform: translateX(4px); }
+.cl-icon {
+  width: 36px; height: 36px;
+  background: var(--teal-light);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  color: var(--teal-dark);
+}
+.cl-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 2px; }
+
+.cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 40px; }
+.cert-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  transition: border-color 0.2s;
+}
+.cert-card:hover { border-color: var(--teal); }
+.cert-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.cert-id { font-size: 11px; color: var(--muted); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 28px 60px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted);
+  background: white;
+}
+footer a { color: var(--teal); text-decoration: none; }
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── FADE UP KEYFRAME ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  nav { padding: 16px 24px; }
+  .hero { grid-template-columns: 1fr; padding: 110px 24px 60px; }
+  .hero-right { display: none; }
+  section { padding: 70px 24px; }
+  .stats-bar { grid-template-columns: repeat(3,1fr); padding: 40px 24px; }
+  .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 48px; }
+  .case-header { padding: 24px; gap: 16px; }
+  .case-body { padding: 0 24px 28px; }
+  .case-snapshot { grid-template-columns: 1fr; }
+  .decisions { grid-template-columns: 1fr; }
+  .bfaf { grid-template-columns: 1fr; }
+  .cert-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">VS.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span></span>
+      Open to new opportunities
+    </div>
+    <h1>Building <span class="accent">AI products</span> that actually ship.</h1>
+    <p class="hero-desc">
+      I'm an <strong>AI Product Owner</strong> with 5+ years shipping GenAI-driven, data-intensive, and automation-led products across EdTech, Automotive, and Insurance. I turn complex problems into measurable outcomes.
+    </p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary">View Case Studies ↓</a>
+      <a href="mailto:vaishnavisharmavs7@gmail.com" class="btn-ghost">Let's talk</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- AI / Neural network SVG illustration -->
+    <svg class="hero-illustration" viewBox="0 0 480 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background card -->
+      <rect x="20" y="20" width="440" height="360" rx="24" fill="white" filter="url(#shadow)"/>
+      <defs>
+        <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+          <feDropShadow dx="0" dy="8" stdDeviation="20" flood-color="#0d9488" flood-opacity="0.1"/>
+        </filter>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+      </defs>
+
+      <!-- Top accent strip -->
+      <rect x="20" y="20" width="440" height="6" rx="24" fill="url(#topGrad)"/>
+      <defs>
+        <linearGradient id="topGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#0d9488"/>
+          <stop offset="100%" stop-color="#5eead4"/>
+        </linearGradient>
+        <linearGradient id="nodeGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0d9488"/>
+          <stop offset="100%" stop-color="#14b8a6"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Grid background -->
+      <g opacity="0.04" stroke="#0d9488" stroke-width="1">
+        <line x1="20" y1="80" x2="460" y2="80"/>
+        <line x1="20" y1="130" x2="460" y2="130"/>
+        <line x1="20" y1="180" x2="460" y2="180"/>
+        <line x1="20" y1="230" x2="460" y2="230"/>
+        <line x1="20" y1="280" x2="460" y2="280"/>
+        <line x1="20" y1="330" x2="460" y2="330"/>
+        <line x1="90" y1="26" x2="90" y2="374"/>
+        <line x1="160" y1="26" x2="160" y2="374"/>
+        <line x1="230" y1="26" x2="230" y2="374"/>
+        <line x1="300" y1="26" x2="300" y2="374"/>
+        <line x1="370" y1="26" x2="370" y2="374"/>
+        <line x1="440" y1="26" x2="440" y2="374"/>
+      </g>
+
+      <!-- Neural connections (lines first, behind nodes) -->
+      <!-- Layer 1 to Layer 2 -->
+      <g stroke="#0d9488" stroke-width="1.5" stroke-opacity="0.25">
+        <line x1="120" y1="130" x2="240" y2="100"/>
+        <line x1="120" y1="130" x2="240" y2="175"/>
+        <line x1="120" y1="130" x2="240" y2="250"/>
+        <line x1="120" y1="210" x2="240" y2="100"/>
+        <line x1="120" y1="210" x2="240" y2="175"/>
+        <line x1="120" y1="210" x2="240" y2="250"/>
+        <line x1="120" y1="290" x2="240" y2="175"/>
+        <line x1="120" y1="290" x2="240" y2="250"/>
+        <line x1="120" y1="290" x2="240" y2="320"/>
+      </g>
+      <!-- Layer 2 to Layer 3 -->
+      <g stroke="#5eead4" stroke-width="1.5" stroke-opacity="0.3">
+        <line x1="240" y1="100" x2="360" y2="130"/>
+        <line x1="240" y1="100" x2="360" y2="200"/>
+        <line x1="240" y1="175" x2="360" y2="130"/>
+        <line x1="240" y1="175" x2="360" y2="200"/>
+        <line x1="240" y1="175" x2="360" y2="280"/>
+        <line x1="240" y1="250" x2="360" y2="200"/>
+        <line x1="240" y1="250" x2="360" y2="280"/>
+        <line x1="240" y1="320" x2="360" y2="280"/>
+      </g>
+
+      <!-- Animated signal pulses -->
+      <circle r="4" fill="#0d9488" opacity="0.8">
+        <animateMotion dur="2.5s" repeatCount="indefinite">
+          <path d="M120,130 L240,175"/>
+        </animateMotion>
+      </circle>
+      <circle r="4" fill="#14b8a6" opacity="0.8">
+        <animateMotion dur="3s" repeatCount="indefinite" begin="0.8s">
+          <path d="M240,250 L360,200"/>
+        </animateMotion>
+      </circle>
+      <circle r="4" fill="#5eead4" opacity="0.7">
+        <animateMotion dur="2s" repeatCount="indefinite" begin="1.5s">
+          <path d="M120,210 L240,100"/>
+        </animateMotion>
+      </circle>
+      <circle r="3" fill="#0d9488" opacity="0.6">
+        <animateMotion dur="2.8s" repeatCount="indefinite" begin="0.3s">
+          <path d="M240,175 L360,280"/>
+        </animateMotion>
+      </circle>
+
+      <!-- Layer 1 nodes -->
+      <g filter="url(#glow)">
+        <circle cx="120" cy="130" r="16" fill="url(#nodeGrad)"/>
+        <circle cx="120" cy="210" r="16" fill="url(#nodeGrad)"/>
+        <circle cx="120" cy="290" r="16" fill="url(#nodeGrad)"/>
+      </g>
+      <!-- Layer 1 node icons (simplified) -->
+      <text x="120" y="135" text-anchor="middle" fill="white" font-size="12">⬢</text>
+      <text x="120" y="215" text-anchor="middle" fill="white" font-size="12">⬢</text>
+      <text x="120" y="295" text-anchor="middle" fill="white" font-size="12">⬢</text>
+
+      <!-- Layer 2 nodes (hidden/middle) -->
+      <circle cx="240" cy="100" r="13" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
+      <circle cx="240" cy="175" r="13" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
+      <circle cx="240" cy="250" r="13" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
+      <circle cx="240" cy="320" r="13" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
+      <!-- Animated inner pulse on middle nodes -->
+      <circle cx="240" cy="175" r="7" fill="#0d9488" opacity="0.5">
+        <animate attributeName="r" values="5;9;5" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0.2;0.5" dur="2s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Layer 3 nodes (output) -->
+      <g>
+        <rect x="344" y="114" width="32" height="32" rx="10" fill="#0d9488"/>
+        <text x="360" y="135" text-anchor="middle" fill="white" font-size="14" font-weight="bold">AI</text>
+      </g>
+      <g>
+        <rect x="344" y="184" width="32" height="32" rx="10" fill="#14b8a6"/>
+        <text x="360" y="205" text-anchor="middle" fill="white" font-size="14" font-weight="bold">AI</text>
+      </g>
+      <g>
+        <rect x="344" y="264" width="32" height="32" rx="10" fill="#0d9488"/>
+        <text x="360" y="285" text-anchor="middle" fill="white" font-size="14" font-weight="bold">AI</text>
+      </g>
+
+      <!-- Labels -->
+      <text x="120" y="320" text-anchor="middle" fill="#64748b" font-size="11" font-family="sans-serif">Input</text>
+      <text x="240" y="350" text-anchor="middle" fill="#64748b" font-size="11" font-family="sans-serif">Processing</text>
+      <text x="360" y="315" text-anchor="middle" fill="#64748b" font-size="11" font-family="sans-serif">Output</text>
+
+      <!-- Data badge top right -->
+      <rect x="340" y="36" width="110" height="34" rx="10" fill="#f0fdfa"/>
+      <text x="395" y="58" text-anchor="middle" fill="#0d9488" font-size="12" font-weight="bold" font-family="sans-serif">GenAI · RAG · LLMs</text>
+
+      <!-- Bottom metrics strip -->
+      <rect x="36" y="348" width="120" height="18" rx="6" fill="#f0fdfa"/>
+      <rect x="36" y="348" width="84" height="18" rx="6" fill="#0d9488" opacity="0.2"/>
+      <text x="96" y="361" text-anchor="middle" fill="#0d9488" font-size="10" font-family="sans-serif" font-weight="600">40% effort saved</text>
+      <rect x="168" y="348" width="110" height="18" rx="6" fill="#f0fdfa"/>
+      <rect x="168" y="348" width="88" height="18" rx="6" fill="#0d9488" opacity="0.2"/>
+      <text x="223" y="361" text-anchor="middle" fill="#0d9488" font-size="10" font-family="sans-serif" font-weight="600">95% UAT approval</text>
+    </svg>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num-wrap" data-count="40" data-suffix="%">0%</div>
+    <div class="stat-label-wrap">Manual effort reduced</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num-wrap" data-count="60" data-suffix="%">0%</div>
+    <div class="stat-label-wrap">Workflow efficiency gain</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num-wrap" data-count="700" data-prefix="$" data-suffix="K+">$0</div>
+    <div class="stat-label-wrap">Annual revenue supported</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num-wrap" data-count="95" data-suffix="%">0%</div>
+    <div class="stat-label-wrap">UAT approval rate</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num-wrap" data-count="5" data-suffix=" yrs">0</div>
+    <div class="stat-label-wrap">Product experience</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">About Me</div>
+  <h2 class="section-title">Product thinking meets <em>technical depth.</em></h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a Product Owner with <strong>5+ years of hands-on experience</strong> building GenAI-driven, data-intensive, and automation-led products. I've shipped a 0-to-1 GenAI platform in the automotive space, scaled a $700K+ enterprise reporting product in EdTech, and led automation across insurance workflows.</p>
+      <p>What separates me from most POs is that I don't just <em>manage</em> AI products — I understand the technical stack. I've designed prompting strategies, defined embedding pipelines, set vector DB retrieval logic, and worked directly with engineering on model behaviour and human-in-the-loop systems.</p>
+      <p>I'm currently exploring <strong>Product Owner and Product Manager roles</strong> at GCCs, SaaS companies, and product-first teams — particularly those building AI or data products.</p>
+      <div class="about-tags">
+        <span class="tag">LLMs & RAG</span>
+        <span class="tag">Prompt Engineering</span>
+        <span class="tag">Vector Databases</span>
+        <span class="tag">SAFe · Scrum</span>
+        <span class="tag">Agile Delivery</span>
+        <span class="tag">0→1 Products</span>
+        <span class="tag">Data Platforms</span>
+        <span class="tag">Stakeholder Alignment</span>
+      </div>
+    </div>
+    <div class="about-illus-wrap reveal">
+      <div class="about-illus-card">
+        <!-- Reporting automation illustration -->
+        <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%">
+          <!-- Dashboard mockup -->
+          <rect x="0" y="0" width="320" height="200" rx="12" fill="#f8fafc"/>
+          <!-- Header bar -->
+          <rect x="0" y="0" width="320" height="36" rx="12" fill="#0d9488"/>
+          <circle cx="16" cy="18" r="5" fill="rgba(255,255,255,0.4)"/>
+          <circle cx="30" cy="18" r="5" fill="rgba(255,255,255,0.4)"/>
+          <circle cx="44" cy="18" r="5" fill="rgba(255,255,255,0.4)"/>
+          <text x="160" y="23" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="600">Reporting Dashboard</text>
+          <!-- Bar chart -->
+          <rect x="16" y="150" width="24" height="40" rx="4" fill="#ccfbf1"/>
+          <rect x="50" y="120" width="24" height="70" rx="4" fill="#5eead4"/>
+          <rect x="84" y="100" width="24" height="90" rx="4" fill="#14b8a6"/>
+          <rect x="118" y="80" width="24" height="110" rx="4" fill="#0d9488"/>
+          <rect x="152" y="60" width="24" height="130" rx="4" fill="#0f766e"/>
+          <!-- Line chart -->
+          <polyline points="190,150 210,120 230,130 250,95 270,85 290,70" stroke="#0d9488" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="290" cy="70" r="5" fill="#0d9488"/>
+          <!-- Mini cards -->
+          <rect x="16" y="50" width="80" height="40" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+          <text x="56" y="68" text-anchor="middle" fill="#0d9488" font-size="14" font-family="sans-serif" font-weight="800">60%</text>
+          <text x="56" y="82" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">Efficiency</text>
+          <rect x="110" y="50" width="80" height="40" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+          <text x="150" y="68" text-anchor="middle" fill="#0d9488" font-size="14" font-family="sans-serif" font-weight="800">~1wk</text>
+          <text x="150" y="82" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">Turnaround</text>
+          <!-- Bottom label -->
+          <text x="160" y="220" text-anchor="middle" fill="#64748b" font-size="12" font-family="sans-serif">Salesforce → Jira → Automated Reports</text>
+          <!-- Progress bar -->
+          <rect x="16" y="235" width="288" height="8" rx="4" fill="#e2e8f0"/>
+          <rect x="16" y="235" width="173" height="8" rx="4" fill="#0d9488">
+            <animate attributeName="width" from="0" to="173" dur="2s" fill="freeze"/>
+          </rect>
+          <text x="160" y="255" text-anchor="middle" fill="#0d9488" font-size="10" font-family="sans-serif" font-weight="600">$700K+ Revenue Stream Protected</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">Expertise</div>
+  <h2 class="section-title">What I bring to <em>your team.</em></h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">🧠</div>
+      <div class="skill-card-title">GenAI Product Development</div>
+      <p>LLMs, RAG pipelines, prompt engineering, vector databases, embedding strategies, human-in-the-loop design. Built and shipped, not just theorised.</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🗺️</div>
+      <div class="skill-card-title">Product Strategy & Roadmap</div>
+      <p>0→1 product development, MVP scoping, phased roadmap definition, OKR & KPI frameworks, trade-off decision-making.</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-card-title">Agile Delivery</div>
+      <p>SAFe POPM, Scrum, sprint planning, backlog grooming, stakeholder demos. 25% velocity improvement delivered in practice.</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">📊</div>
+      <div class="skill-card-title">Data & Reporting Platforms</div>
+      <p>Enterprise reporting products, SQL, Power BI, data pipeline design, metrics frameworks, KPI tracking and iteration.</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔄</div>
+      <div class="skill-card-title">Workflow Automation</div>
+      <p>Power Automate, PowerApps, Salesforce-to-Jira pipelines, API integrations, RPA across enterprise workflows.</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🤝</div>
+      <div class="skill-card-title">Stakeholder Management</div>
+      <p>50+ stakeholder alignment across engineering, sales, and client success. Requirement gathering, trade-off facilitation, delivery communication.</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🛠️</div>
+      <div class="skill-card-title">Tools</div>
+      <p>JIRA · Confluence · Miro · Power BI · SQL · Power Automate · PowerApps · Salesforce · GenAI APIs</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🚀</div>
+      <div class="skill-card-title">Currently Exploring</div>
+      <p>Agentic AI workflows, LangChain, product analytics frameworks, AI-assisted product discovery and experimentation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="work">
+  <div class="section-tag">Case Studies</div>
+  <h2 class="section-title">Products I've owned <em>and shipped.</em></h2>
+
+  <div class="case-grid">
+
+    <!-- CASE 1 -->
+    <div class="case-card reveal" id="case1">
+      <div class="case-header" onclick="toggleCase('case1')">
+        <div class="case-num-badge">01</div>
+        <div class="case-header-text">
+          <div class="case-domain">Automotive · RNT · 2021–2025</div>
+          <div class="case-title">AI Test Automation Platform</div>
+          <div class="case-tagline">Automating test artifact creation with GenAI — 40% effort reduction, 80% consistency improvement</div>
+          <div class="case-pills">
+            <span class="case-pill">LLMs</span>
+            <span class="case-pill">RAG</span>
+            <span class="case-pill">Vector DB</span>
+            <span class="case-pill">Prompt Engineering</span>
+            <span class="case-pill">0→1 Product</span>
+          </div>
+        </div>
+        <div class="case-toggle-btn">+</div>
+      </div>
+
+      <div class="case-body">
+        <div class="case-snapshot">
+          <div class="snap-cell">
+            <div class="snap-label">Problem</div>
+            <p>Engineers spent ~50% of time manually writing test artifacts in Polarion — inconsistent, slow, and impacting testing quality</p>
+          </div>
+          <div class="snap-cell">
+            <div class="snap-label">Solution</div>
+            <p>GenAI platform using LLMs, vector databases, and embeddings for automated artifact generation with human-in-the-loop validation</p>
+          </div>
+          <div class="snap-cell">
+            <div class="snap-label">Impact</div>
+            <p>40% effort reduction · 80% consistency improvement · 95% UAT approval · 100% adoption across India & Germany</p>
+          </div>
+        </div>
+
+        <!-- Illustration -->
+        <div style="margin: 0 0 32px; border-radius:16px; overflow:hidden; background:#f0fdfa; padding: 28px;">
+          <svg viewBox="0 0 560 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%">
+            <!-- Flow diagram for GenAI platform -->
+            <defs>
+              <linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#ccfbf1"/>
+                <stop offset="100%" stop-color="#0d9488"/>
+              </linearGradient>
+            </defs>
+            <!-- Steps -->
+            <rect x="0" y="40" width="96" height="80" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+            <text x="48" y="75" text-anchor="middle" fill="#0d9488" font-size="18">📥</text>
+            <text x="48" y="95" text-anchor="middle" fill="#0f172a" font-size="10" font-family="sans-serif" font-weight="600">Requirements</text>
+            <text x="48" y="109" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">Ingestion</text>
+
+            <text x="116" y="84" text-anchor="middle" fill="#0d9488" font-size="18">→</text>
+
+            <rect x="128" y="40" width="96" height="80" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+            <text x="176" y="75" text-anchor="middle" fill="#0d9488" font-size="18">🔍</text>
+            <text x="176" y="95" text-anchor="middle" fill="#0f172a" font-size="10" font-family="sans-serif" font-weight="600">Semantic</text>
+            <text x="176" y="109" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">Search · Vector DB</text>
+
+            <text x="244" y="84" text-anchor="middle" fill="#0d9488" font-size="18">→</text>
+
+            <rect x="256" y="30" width="112" height="100" rx="12" fill="#0d9488"/>
+            <text x="312" y="72" text-anchor="middle" fill="white" font-size="18">✨</text>
+            <text x="312" y="95" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="700">GenAI</text>
+            <text x="312" y="111" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9" font-family="sans-serif">Artifact Generation</text>
+            <circle cx="312" cy="50" r="4" fill="rgba(255,255,255,0.3)">
+              <animate attributeName="r" values="3;6;3" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+
+            <text x="388" y="84" text-anchor="middle" fill="#0d9488" font-size="18">→</text>
+
+            <rect x="400" y="40" width="96" height="80" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+            <text x="448" y="75" text-anchor="middle" fill="#0d9488" font-size="18">👤</text>
+            <text x="448" y="95" text-anchor="middle" fill="#0f172a" font-size="10" font-family="sans-serif" font-weight="600">Human</text>
+            <text x="448" y="109" text-anchor="middle" fill="#64748b" font-size="9" font-family="sans-serif">Review & Validate</text>
+
+            <text x="516" y="84" text-anchor="middle" fill="#0d9488" font-size="18">→</text>
+
+            <rect x="0" y="145" width="560" height="12" rx="4" fill="#e2e8f0"/>
+            <rect x="0" y="145" width="336" height="12" rx="4" fill="url(#flowGrad)">
+              <animate attributeName="width" from="0" to="336" dur="2.5s" fill="freeze"/>
+            </rect>
+            <text x="560" y="152" text-anchor="end" fill="#0d9488" font-size="9" font-family="sans-serif" font-weight="600">60% automatable · 40% effort saved</text>
+          </svg>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Problem</div>
+          <p>In automotive testing, engineers manually created highly detailed test artifacts in Polarion for every product increment. The process was time-intensive and inconsistent across global teams.</p>
+          <ul class="blist">
+            <li>Engineers spent <strong>~50% of their time on documentation</strong>, cutting actual testing capacity</li>
+            <li>Artifact quality varied across India and Germany teams, increasing review cycles and rework</li>
+            <li>Manual bottlenecks slowed down testing pipelines tied to product safety</li>
+          </ul>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Strategy & Hypothesis</div>
+          <div class="hypothesis">If we use Generative AI to automate test artifact creation, we can reduce manual effort by <strong>40–50%</strong> while maintaining quality — allowing engineers to shift focus from documentation to testing.</div>
+          <p>Validated through <strong>10 engineer interviews</strong> across India and Germany, 3 months of Polarion data analysis, and stakeholder appetite-testing before committing to MVP scope.</p>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Key Product Decisions</div>
+          <div class="decisions">
+            <div class="dec-card">
+              <div class="dec-choice">GenAI generation over ISO compliance for MVP</div>
+              <div class="dec-why">Deferring compliance to Phase 2 let us prove value and secure funding faster without blocking launch.</div>
+            </div>
+            <div class="dec-card">
+              <div class="dec-choice">Human-in-the-loop validation required before export</div>
+              <div class="dec-why">Given safety-critical context, engineer review before Polarion export built trust and reduced adoption risk.</div>
+            </div>
+            <div class="dec-card">
+              <div class="dec-choice">Historical artifacts as embedding context</div>
+              <div class="dec-why">Using existing high-quality artifacts for retrieval improved output relevance without fine-tuning — faster to MVP.</div>
+            </div>
+            <div class="dec-card">
+              <div class="dec-choice">Top 3 artifact types first (~70% of volume)</div>
+              <div class="dec-why">Focused scope maximised measurable impact while keeping initial delivery manageable.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">My Technical Contributions</div>
+          <p>I defined the prompting strategy — template structure, few-shot examples, and temperature calibration across 4 iteration cycles. I worked directly with engineering on the retrieval pipeline, chunking strategy for embeddings, and the human review workflow. I also established the AI output quality rubric used throughout UAT.</p>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Impact</div>
+          <div class="impact-row">
+            <div class="imp-cell"><div class="imp-num">40%</div><div class="imp-desc">Manual effort reduction</div></div>
+            <div class="imp-cell"><div class="imp-num">80%</div><div class="imp-desc">Consistency improvement</div></div>
+            <div class="imp-cell"><div class="imp-num">95%</div><div class="imp-desc">UAT approval rate</div></div>
+            <div class="imp-cell"><div class="imp-num">100%</div><div class="imp-desc">Phase 1 adoption</div></div>
+            <div class="imp-cell"><div class="imp-num">70%</div><div class="imp-desc">Stakeholders recommended funding</div></div>
+          </div>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Before vs After</div>
+          <div class="bfaf">
+            <div class="bfaf-col">
+              <div class="bfaf-head b">Before</div>
+              <div class="bfaf-row b">~50% engineer time on documentation</div>
+              <div class="bfaf-row b">Inconsistent quality across teams</div>
+              <div class="bfaf-row b">Manual, error-prone process</div>
+              <div class="bfaf-row b">Low focus on actual testing</div>
+            </div>
+            <div class="bfaf-col">
+              <div class="bfaf-head a">After</div>
+              <div class="bfaf-row a">40% reduction in documentation effort</div>
+              <div class="bfaf-row a">Standardised outputs across India & Germany</div>
+              <div class="bfaf-row a">AI-assisted with human validation</div>
+              <div class="bfaf-row a">Engineers refocused on validation quality</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Challenges & Learnings</div>
+          <div class="challenges">
+            <div class="chal-item">
+              <div class="chal-title">AI Output Inconsistency</div>
+              <div class="chal-body">Iterated prompt templates across 4 cycles — adding output constraints, adjusting temperature, and incorporating few-shot examples from high-quality historical artifacts. This significantly reduced variance before UAT.</div>
+            </div>
+            <div class="chal-item">
+              <div class="chal-title">Stakeholder Trust in AI Outputs</div>
+              <div class="chal-body">Ran 6 structured demo sessions using engineers' own real test scenarios. Shifted conversation from "can AI do this?" to "how do we integrate this into our workflow?"</div>
+            </div>
+            <div class="chal-item">
+              <div class="chal-title">Data Quality for Embeddings</div>
+              <div class="chal-body">Manually curated a high-quality embedding dataset with 3 senior test engineers — measurably improved retrieval relevance and model performance.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CASE 2 -->
+    <div class="case-card reveal" id="case2">
+      <div class="case-header" onclick="toggleCase('case2')">
+        <div class="case-num-badge">02</div>
+        <div class="case-header-text">
+          <div class="case-domain">EdTech · HMH · 2025–Present</div>
+          <div class="case-title">Custom & Premium Reporting Platform</div>
+          <div class="case-tagline">Scaling enterprise reporting through automation — 3–4 weeks to ~1 week, $700K+ revenue protected</div>
+          <div class="case-pills">
+            <span class="case-pill">Workflow Automation</span>
+            <span class="case-pill">Salesforce</span>
+            <span class="case-pill">Jira</span>
+            <span class="case-pill">Data Platform</span>
+            <span class="case-pill">Enterprise B2B</span>
+          </div>
+        </div>
+        <div class="case-toggle-btn">+</div>
+      </div>
+
+      <div class="case-body">
+        <div class="case-snapshot">
+          <div class="snap-cell">
+            <div class="snap-label">Problem</div>
+            <p>Report delivery took 3–4 weeks due to fully manual SQL + Excel workflows, creating active client retention risk on a $700K+ revenue line</p>
+          </div>
+          <div class="snap-cell">
+            <div class="snap-label">Solution</div>
+            <p>Automated Salesforce-to-Jira intake pipeline + standardised report templates, eliminating coordination overhead and manual SQL recreation</p>
+          </div>
+          <div class="snap-cell">
+            <div class="snap-label">Impact</div>
+            <p>60% effort reduction · Delivery from 3–4 weeks to ~1 week · 100% AM adoption · 15% YoY demand growth</p>
+          </div>
+        </div>
+
+        <!-- Automation flow illustration -->
+        <div style="margin: 0 0 32px; border-radius:16px; overflow:hidden; background:#f0fdfa; padding: 28px;">
+          <svg viewBox="0 0 560 130" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%">
+            <defs>
+              <linearGradient id="barGrad2" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#ccfbf1"/>
+                <stop offset="100%" stop-color="#0d9488"/>
+              </linearGradient>
+            </defs>
+            <!-- Before bar -->
+            <text x="0" y="20" fill="#64748b" font-size="11" font-family="sans-serif" font-weight="600">Before: 3–4 weeks</text>
+            <rect x="0" y="28" width="520" height="20" rx="6" fill="#fee2e2"/>
+            <rect x="0" y="28" width="520" height="20" rx="6" fill="#fca5a5" opacity="0.5"/>
+            <text x="260" y="43" text-anchor="middle" fill="#dc2626" font-size="10" font-family="sans-serif" font-weight="600">Manual SQL + Excel + Email coordination</text>
+
+            <!-- After bar -->
+            <text x="0" y="72" fill="#64748b" font-size="11" font-family="sans-serif" font-weight="600">After: ~1 week</text>
+            <rect x="0" y="80" width="520" height="20" rx="6" fill="#e2e8f0"/>
+            <rect x="0" y="80" width="130" height="20" rx="6" fill="url(#barGrad2)">
+              <animate attributeName="width" from="520" to="130" dur="2s" fill="freeze"/>
+            </rect>
+            <text x="65" y="95" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif" font-weight="600">Automated</text>
+            <text x="325" y="95" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">60% effort saved</text>
+
+            <!-- Metric badges -->
+            <rect x="0" y="110" width="100" height="20" rx="6" fill="#ccfbf1"/>
+            <text x="50" y="124" text-anchor="middle" fill="#0f766e" font-size="10" font-family="sans-serif" font-weight="600">$700K+ revenue</text>
+            <rect x="110" y="110" width="100" height="20" rx="6" fill="#ccfbf1"/>
+            <text x="160" y="124" text-anchor="middle" fill="#0f766e" font-size="10" font-family="sans-serif" font-weight="600">100% AM adoption</text>
+            <rect x="220" y="110" width="110" height="20" rx="6" fill="#ccfbf1"/>
+            <text x="275" y="124" text-anchor="middle" fill="#0f766e" font-size="10" font-family="sans-serif" font-weight="600">+15% YoY demand</text>
+          </svg>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Problem</div>
+          <p>HMH's Custom & Premium Reports (CPR) delivered critical student performance data to US educational districts — but the process was entirely manual end-to-end.</p>
+          <ul class="blist">
+            <li>Reports built using <strong>manual SQL queries and Excel</strong>, recreated from scratch for each request</li>
+            <li>Delivery took <strong>3–4 weeks per report</strong>, causing client dissatisfaction and escalations</li>
+            <li>No standardised intake — requests arrived via email, calls, and ad-hoc Slack messages</li>
+            <li>Teams had no capacity for innovation, stuck entirely in execution mode</li>
+          </ul>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Discovery & Validation</div>
+          <p>Before defining the solution, I ran <strong>15 requirement-gathering sessions</strong> with Account Managers and mapped the end-to-end workflow across 8 report types. Analysis of 3 months of ticket history revealed that <strong>70% of requests were variations of just 4 core report types</strong>, and intake and coordination consumed 40% of total delivery time — more than actual report-building.</p>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Strategy & Hypothesis</div>
+          <div class="hypothesis">If we automate the intake, routing, and generation of repeatable report types, we can reduce turnaround time by 60–70% and free capacity for higher-value work — without rebuilding the entire reporting infrastructure.</div>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Solution Architecture</div>
+          <div class="flow">
+            <div class="flow-step">Salesforce Request</div>
+            <div class="flow-arr">→</div>
+            <div class="flow-step">Automated Validation</div>
+            <div class="flow-arr">→</div>
+            <div class="flow-step">Jira Auto-Creation</div>
+            <div class="flow-arr">→</div>
+            <div class="flow-step">Report Generation</div>
+            <div class="flow-arr">→</div>
+            <div class="flow-step">Delivery</div>
+          </div>
+          <p style="margin-top:16px"><strong>My specific contributions:</strong> I defined intake form fields and validation logic, designed the Salesforce-to-Jira field mapping, wrote acceptance criteria for the automation pipeline, and ran 3 rounds of UAT with Account Managers. I also defined the SLA framework and escalation triggers built into the Jira workflow.</p>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Impact</div>
+          <div class="impact-row">
+            <div class="imp-cell"><div class="imp-num">60%</div><div class="imp-desc">Manual effort reduction</div></div>
+            <div class="imp-cell"><div class="imp-num">~1wk</div><div class="imp-desc">Delivery (from 3–4 weeks)</div></div>
+            <div class="imp-cell"><div class="imp-num">100%</div><div class="imp-desc">AM adoption</div></div>
+            <div class="imp-cell"><div class="imp-num">$700K+</div><div class="imp-desc">Revenue supported</div></div>
+            <div class="imp-cell"><div class="imp-num">+15%</div><div class="imp-desc">YoY demand growth</div></div>
+          </div>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Before vs After</div>
+          <div class="bfaf">
+            <div class="bfaf-col">
+              <div class="bfaf-head b">Before</div>
+              <div class="bfaf-row b">3–4 weeks per report delivery</div>
+              <div class="bfaf-row b">Fully manual SQL + Excel</div>
+              <div class="bfaf-row b">No standard intake — email chaos</div>
+              <div class="bfaf-row b">Limited scalability</div>
+            </div>
+            <div class="bfaf-col">
+              <div class="bfaf-head a">After</div>
+              <div class="bfaf-row a">~1 week turnaround for standard reports</div>
+              <div class="bfaf-row a">60% of workflows fully automated</div>
+              <div class="bfaf-row a">Standardised Salesforce intake — zero chaos</div>
+              <div class="bfaf-row a">+15% YoY demand handled, no new headcount</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs">
+          <div class="cs-title">Challenges & Learnings</div>
+          <div class="challenges">
+            <div class="chal-item">
+              <div class="chal-title">Every AM Believed Their Request Was Unique</div>
+              <div class="chal-body">Data analysis showed 70% were variants of 4 templates. Presenting this evidence shifted the conversation from exception-by-exception to pattern-based automation — the most important alignment moment of the project.</div>
+            </div>
+            <div class="chal-item">
+              <div class="chal-title">Change Resistance to New Intake Process</div>
+              <div class="chal-body">Ran a phased rollout with 3 pilot AMs first, used their success stories to build internal advocates, then scaled to all 50+. Monitored adoption weekly for the first month.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag">Let's Connect</div>
+  <h2 class="section-title">Open to the <em>right opportunity.</em></h2>
+  <div class="contact-wrap">
+    <div class="reveal">
+      <p class="contact-bio">
+        I'm actively exploring <strong>Product Owner and Product Manager roles</strong> at GCCs, SaaS companies, and product-first teams — particularly those building AI, data, or automation products.<br><br>
+        I bring genuine GenAI depth, strong business instinct, and a track record of shipping products that move measurable metrics. Based in <strong>Pune, India</strong>. Open to hybrid and remote.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:vaishnavisharmavs7@gmail.com" class="contact-link">
+          <div class="cl-icon">✉️</div>
+          <div>
+            <div class="cl-label">Email</div>
+            vaishnavisharmavs7@gmail.com
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/vaishnavi-sharma-423052196" target="_blank" class="contact-link">
+          <div class="cl-icon">💼</div>
+          <div>
+            <div class="cl-label">LinkedIn</div>
+            linkedin.com/in/vaishnavi-sharma-423052196
+          </div>
+        </a>
+        <a href="tel:+918668567554" class="contact-link">
+          <div class="cl-icon">📱</div>
+          <div>
+            <div class="cl-label">Phone</div>
+            +91 8668567554
+          </div>
+        </a>
+        <div class="contact-link" style="cursor:default">
+          <div class="cl-icon">📍</div>
+          <div>
+            <div class="cl-label">Location</div>
+            Pune, India — Open to Remote / Hybrid
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="section-tag">Certifications</div>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <div class="cert-name">SAFe Product Owner / Product Manager</div>
+          <div class="cert-id">ID: 85180491-3115</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Certified Scrum Product Owner (CSPO)</div>
+          <div class="cert-id">ID: 001690560</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Certified Scrum Master (CSM)</div>
+          <div class="cert-id">Active through Sep 2026</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Python Programming Certification</div>
+          <div class="cert-id">&nbsp;</div>
+        </div>
+      </div>
+      <div style="margin-top:40px">
+        <div class="section-tag">Education</div>
+        <div class="cert-card" style="margin-top:16px">
+          <div class="cert-name">BBA — Computer Applications</div>
+          <div class="cert-id">MIT World Peace University · Pune · 2018–2021</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Vaishnavi Sharma · AI Product Owner · Pune, India</span>
+  <span><a href="mailto:vaishnavisharmavs7@gmail.com">vaishnavisharmavs7@gmail.com</a></span>
+</footer>
+
+<script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Toggle case studies
+  function toggleCase(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, entry.target.dataset.delay || 0);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.dataset.delay = (i % 4) * 80;
+    revealObserver.observe(el);
+  });
+
+  // Counter animation
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.count);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      el.textContent = prefix + Math.floor(current) + suffix;
+    }, 16);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('[data-count]').forEach(animateCounter);
+        statsObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+  statsObserver.observe(document.querySelector('.stats-bar'));
+</script>
+</body>
+</html>
